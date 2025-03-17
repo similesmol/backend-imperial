@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pasajeros",
+  "info": {
+    "singularName": "pasajero",
+    "pluralName": "pasajeros",
+    "displayName": "Pasajero"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombres": {
+      "type": "string"
+    }
+  }
+}

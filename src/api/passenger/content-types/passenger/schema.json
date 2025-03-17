@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "passengers",
+  "info": {
+    "singularName": "passenger",
+    "pluralName": "passengers",
+    "displayName": "Passenger"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "PassengerName": {
+      "type": "text"
+    },
+    "Age": {
+      "type": "integer"
+    },
+    "Gender": {
+      "type": "string",
+      "required": false
+    },
+    "SeatNo": {
+      "type": "integer"
+    }
+  }
+}

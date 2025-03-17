@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asientos",
+  "info": {
+    "singularName": "asiento",
+    "pluralName": "asientos",
+    "displayName": "Asiento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "numeroPiso": {
+      "type": "integer"
+    },
+    "numeroAsiento": {
+      "type": "integer"
+    },
+    "estado": {
+      "type": "boolean"
+    },
+    "precio": {
+      "type": "decimal"
+    },
+    "buses_detalle": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::buses-detalle.buses-detalle",
+      "inversedBy": "asientos"
+    }
+  }
+}

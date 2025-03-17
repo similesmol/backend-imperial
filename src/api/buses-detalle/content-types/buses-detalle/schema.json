@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buses_detalles",
+  "info": {
+    "singularName": "buses-detalle",
+    "pluralName": "buses-detalles",
+    "displayName": "BusesDetalles"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "origen": {
+      "type": "string"
+    },
+    "destino": {
+      "type": "string"
+    },
+    "horaSalida": {
+      "type": "time"
+    },
+    "horaLlegada": {
+      "type": "time"
+    },
+    "distanciaKm": {
+      "type": "integer"
+    },
+    "terminalSaliente": {
+      "type": "string"
+    },
+    "terminalEntrante": {
+      "type": "string"
+    },
+    "precioPromedio": {
+      "type": "decimal"
+    },
+    "asientos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::asiento.asiento",
+      "mappedBy": "buses_detalle"
+    }
+  }
+}
