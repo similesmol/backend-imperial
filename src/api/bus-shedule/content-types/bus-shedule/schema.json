@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bus_shedules",
+  "info": {
+    "singularName": "bus-shedule",
+    "pluralName": "bus-shedules",
+    "displayName": "bus_shedule",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "availableSeats": {
+      "type": "integer"
+    },
+    "totalSeats": {
+      "type": "integer"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "arrivalTime": {
+      "type": "datetime"
+    },
+    "departureTime": {
+      "type": "datetime"
+    },
+    "busName": {
+      "type": "string"
+    },
+    "busVehicleNo": {
+      "type": "string"
+    },
+    "fromLocationName": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location.location"
+    },
+    "toLocationName": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::location.location"
+    },
+    "vendorName": {
+      "type": "string"
+    },
+    "scheduleDate": {
+      "type": "datetime"
+    }
+  }
+}

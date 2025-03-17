@@ -506,6 +506,51 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiBusSheduleBusShedule extends Struct.CollectionTypeSchema {
+  collectionName: 'bus_shedules';
+  info: {
+    description: '';
+    displayName: 'bus_shedule';
+    pluralName: 'bus-shedules';
+    singularName: 'bus-shedule';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    arrivalTime: Schema.Attribute.DateTime;
+    availableSeats: Schema.Attribute.Integer;
+    busName: Schema.Attribute.String;
+    busVehicleNo: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    departureTime: Schema.Attribute.DateTime;
+    fromLocationName: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::location.location'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::bus-shedule.bus-shedule'
+    > &
+      Schema.Attribute.Private;
+    price: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    scheduleDate: Schema.Attribute.DateTime;
+    toLocationName: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::location.location'
+    >;
+    totalSeats: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vendorName: Schema.Attribute.String;
+  };
+}
+
 export interface ApiBusesDetalleBusesDetalle
   extends Struct.CollectionTypeSchema {
   collectionName: 'buses_detalles';
@@ -1208,6 +1253,7 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::asiento.asiento': ApiAsientoAsiento;
       'api::author.author': ApiAuthorAuthor;
+      'api::bus-shedule.bus-shedule': ApiBusSheduleBusShedule;
       'api::buses-detalle.buses-detalle': ApiBusesDetalleBusesDetalle;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
