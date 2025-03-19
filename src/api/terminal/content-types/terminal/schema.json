@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "terminals",
+  "info": {
+    "singularName": "terminal",
+    "pluralName": "terminals",
+    "displayName": "terminal"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "direccion": {
+      "type": "string"
+    },
+    "nombreTerminal": {
+      "type": "string"
+    },
+    "provinciaId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::provincia.provincia"
+    }
+  }
+}

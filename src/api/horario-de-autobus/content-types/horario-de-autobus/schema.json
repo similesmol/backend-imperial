@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "horario_de_autobuses",
+  "info": {
+    "singularName": "horario-de-autobus",
+    "pluralName": "horario-de-autobuses",
+    "displayName": "horarioDeAutobus",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "asientosDisponibles": {
+      "type": "integer"
+    },
+    "totalDeAsiento": {
+      "type": "integer"
+    },
+    "precio": {
+      "type": "decimal"
+    },
+    "fechaDeLlegada": {
+      "type": "datetime"
+    },
+    "fechaDeSalida": {
+      "type": "datetime"
+    },
+    "nombreDeBus": {
+      "type": "string"
+    },
+    "numeroPLacaBus": {
+      "type": "string"
+    },
+    "terminalSalidaId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::terminal.terminal"
+    },
+    "terminalLlegadaId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::terminal.terminal"
+    }
+  }
+}

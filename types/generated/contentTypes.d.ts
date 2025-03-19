@@ -398,46 +398,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
-  info: {
-    description: 'Create your blog content';
-    displayName: 'Article';
-    pluralName: 'articles';
-    singularName: 'article';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
-    blocks: Schema.Attribute.DynamicZone<
-      ['shared.media', 'shared.quote', 'shared.rich-text', 'shared.slider']
-    >;
-    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
-    cover: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
-      }>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::article.article'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
   collectionName: 'asientos';
   info: {
@@ -471,83 +431,6 @@ export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
-  collectionName: 'authors';
-  info: {
-    description: 'Create authors for your content';
-    displayName: 'Author';
-    pluralName: 'authors';
-    singularName: 'author';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    avatar: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    email: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::author.author'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiBusSheduleBusShedule extends Struct.CollectionTypeSchema {
-  collectionName: 'bus_shedules';
-  info: {
-    description: '';
-    displayName: 'bus_shedule';
-    pluralName: 'bus-shedules';
-    singularName: 'bus-shedule';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    arrivalTime: Schema.Attribute.DateTime;
-    availableSeats: Schema.Attribute.Integer;
-    busName: Schema.Attribute.String;
-    busVehicleNo: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    departureTime: Schema.Attribute.DateTime;
-    fromLocationName: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::location.location'
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::bus-shedule.bus-shedule'
-    > &
-      Schema.Attribute.Private;
-    price: Schema.Attribute.Decimal;
-    publishedAt: Schema.Attribute.DateTime;
-    scheduleDate: Schema.Attribute.DateTime;
-    toLocationName: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::location.location'
-    >;
-    totalSeats: Schema.Attribute.Integer;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    vendorName: Schema.Attribute.String;
   };
 }
 
@@ -588,38 +471,6 @@ export interface ApiBusesDetalleBusesDetalle
   };
 }
 
-export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
-  collectionName: 'categories';
-  info: {
-    description: 'Organize your content into categories';
-    displayName: 'Category';
-    pluralName: 'categories';
-    singularName: 'category';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    articles: Schema.Attribute.Relation<'oneToMany', 'api::article.article'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -652,57 +503,44 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiLocationLocation extends Struct.CollectionTypeSchema {
-  collectionName: 'locations';
+export interface ApiHorarioDeAutobusHorarioDeAutobus
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'horario_de_autobuses';
   info: {
-    displayName: 'Location';
-    pluralName: 'locations';
-    singularName: 'location';
+    description: '';
+    displayName: 'horarioDeAutobus';
+    pluralName: 'horario-de-autobuses';
+    singularName: 'horario-de-autobus';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    code: Schema.Attribute.String;
+    asientosDisponibles: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    fechaDeLlegada: Schema.Attribute.DateTime;
+    fechaDeSalida: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::location.location'
+      'api::horario-de-autobus.horario-de-autobus'
     > &
       Schema.Attribute.Private;
-    locationName: Schema.Attribute.Text;
+    nombreDeBus: Schema.Attribute.String;
+    numeroPLacaBus: Schema.Attribute.String;
+    precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
-  collectionName: 'pasajeros';
-  info: {
-    displayName: 'Pasajero';
-    pluralName: 'pasajeros';
-    singularName: 'pasajero';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::pasajero.pasajero'
-    > &
-      Schema.Attribute.Private;
-    nombres: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
+    terminalLlegadaId: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::terminal.terminal'
+    >;
+    terminalSalidaId: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::terminal.terminal'
+    >;
+    totalDeAsiento: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -734,6 +572,68 @@ export interface ApiPassengerPassenger extends Struct.CollectionTypeSchema {
     PassengerName: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
     SeatNo: Schema.Attribute.Integer;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiProvinciaProvincia extends Struct.CollectionTypeSchema {
+  collectionName: 'provincias';
+  info: {
+    displayName: 'provincia';
+    pluralName: 'provincias';
+    singularName: 'provincia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    code: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::provincia.provincia'
+    > &
+      Schema.Attribute.Private;
+    nombreProvincia: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTerminalTerminal extends Struct.CollectionTypeSchema {
+  collectionName: 'terminals';
+  info: {
+    displayName: 'terminal';
+    pluralName: 'terminals';
+    singularName: 'terminal';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    direccion: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::terminal.terminal'
+    > &
+      Schema.Attribute.Private;
+    nombreTerminal: Schema.Attribute.String;
+    provinciaId: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::provincia.provincia'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1250,16 +1150,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::article.article': ApiArticleArticle;
       'api::asiento.asiento': ApiAsientoAsiento;
-      'api::author.author': ApiAuthorAuthor;
-      'api::bus-shedule.bus-shedule': ApiBusSheduleBusShedule;
       'api::buses-detalle.buses-detalle': ApiBusesDetalleBusesDetalle;
-      'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
-      'api::location.location': ApiLocationLocation;
-      'api::pasajero.pasajero': ApiPasajeroPasajero;
+      'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
       'api::passenger.passenger': ApiPassengerPassenger;
+      'api::provincia.provincia': ApiProvinciaProvincia;
+      'api::terminal.terminal': ApiTerminalTerminal;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

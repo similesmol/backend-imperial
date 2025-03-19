@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "provincias",
+  "info": {
+    "singularName": "provincia",
+    "pluralName": "provincias",
+    "displayName": "provincia"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombreProvincia": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    }
+  }
+}
