@@ -471,6 +471,36 @@ export interface ApiBusesDetalleBusesDetalle
   };
 }
 
+export interface ApiEmpleadoEmpleado extends Struct.CollectionTypeSchema {
+  collectionName: 'empleados';
+  info: {
+    displayName: 'empleado';
+    pluralName: 'empleados';
+    singularName: 'empleado';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    departamento: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::empleado.empleado'
+    > &
+      Schema.Attribute.Private;
+    nombre: Schema.Attribute.String;
+    posicion: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -1152,6 +1182,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::asiento.asiento': ApiAsientoAsiento;
       'api::buses-detalle.buses-detalle': ApiBusesDetalleBusesDetalle;
+      'api::empleado.empleado': ApiEmpleadoEmpleado;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
       'api::passenger.passenger': ApiPassengerPassenger;
