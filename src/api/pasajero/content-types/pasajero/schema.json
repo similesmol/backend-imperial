@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pasajeros",
+  "info": {
+    "singularName": "pasajero",
+    "pluralName": "pasajeros",
+    "displayName": "pasajero"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tipoDocumento": {
+      "type": "enumeration",
+      "enum": [
+        "dni",
+        "pasaporte",
+        "carnetExtranjeria"
+      ]
+    },
+    "numeroDocumento": {
+      "type": "string"
+    },
+    "nombreCompleto": {
+      "type": "string"
+    },
+    "edad": {
+      "type": "integer"
+    },
+    "genero": {
+      "type": "enumeration",
+      "enum": [
+        "masculino",
+        "femenino"
+      ]
+    },
+    "numeroAsiento": {
+      "type": "integer"
+    }
+  }
+}

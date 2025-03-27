@@ -398,109 +398,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
-  collectionName: 'asientos';
-  info: {
-    description: '';
-    displayName: 'Asiento';
-    pluralName: 'asientos';
-    singularName: 'asiento';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    buses_detalle: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::buses-detalle.buses-detalle'
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    estado: Schema.Attribute.Boolean;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::asiento.asiento'
-    > &
-      Schema.Attribute.Private;
-    numeroAsiento: Schema.Attribute.Integer;
-    numeroPiso: Schema.Attribute.Integer;
-    precio: Schema.Attribute.Decimal;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiBusesDetalleBusesDetalle
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'buses_detalles';
-  info: {
-    displayName: 'BusesDetalles';
-    pluralName: 'buses-detalles';
-    singularName: 'buses-detalle';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    asientos: Schema.Attribute.Relation<'oneToMany', 'api::asiento.asiento'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    destino: Schema.Attribute.String;
-    distanciaKm: Schema.Attribute.Integer;
-    horaLlegada: Schema.Attribute.Time;
-    horaSalida: Schema.Attribute.Time;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::buses-detalle.buses-detalle'
-    > &
-      Schema.Attribute.Private;
-    origen: Schema.Attribute.String;
-    precioPromedio: Schema.Attribute.Decimal;
-    publishedAt: Schema.Attribute.DateTime;
-    terminalEntrante: Schema.Attribute.String;
-    terminalSaliente: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiEmpleadoEmpleado extends Struct.CollectionTypeSchema {
-  collectionName: 'empleados';
-  info: {
-    displayName: 'empleado';
-    pluralName: 'empleados';
-    singularName: 'empleado';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    departamento: Schema.Attribute.String;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::empleado.empleado'
-    > &
-      Schema.Attribute.Private;
-    nombre: Schema.Attribute.String;
-    posicion: Schema.Attribute.String;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -577,31 +474,35 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
   };
 }
 
-export interface ApiPassengerPassenger extends Struct.CollectionTypeSchema {
-  collectionName: 'passengers';
+export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
+  collectionName: 'pasajeros';
   info: {
-    displayName: 'Passenger';
-    pluralName: 'passengers';
-    singularName: 'passenger';
+    displayName: 'pasajero';
+    pluralName: 'pasajeros';
+    singularName: 'pasajero';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Age: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Gender: Schema.Attribute.String;
+    edad: Schema.Attribute.Integer;
+    genero: Schema.Attribute.Enumeration<['masculino', 'femenino']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::passenger.passenger'
+      'api::pasajero.pasajero'
     > &
       Schema.Attribute.Private;
-    PassengerName: Schema.Attribute.Text;
+    nombreCompleto: Schema.Attribute.String;
+    numeroAsiento: Schema.Attribute.Integer;
+    numeroDocumento: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    SeatNo: Schema.Attribute.Integer;
+    tipoDocumento: Schema.Attribute.Enumeration<
+      ['dni', 'pasaporte', 'carnetExtranjeria']
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1125,7 +1026,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1139,6 +1039,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1180,12 +1081,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::asiento.asiento': ApiAsientoAsiento;
-      'api::buses-detalle.buses-detalle': ApiBusesDetalleBusesDetalle;
-      'api::empleado.empleado': ApiEmpleadoEmpleado;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
-      'api::passenger.passenger': ApiPassengerPassenger;
+      'api::pasajero.pasajero': ApiPasajeroPasajero;
       'api::provincia.provincia': ApiProvinciaProvincia;
       'api::terminal.terminal': ApiTerminalTerminal;
       'plugin::content-releases.release': PluginContentReleasesRelease;
