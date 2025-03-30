@@ -4,7 +4,8 @@
   "info": {
     "singularName": "pasajero",
     "pluralName": "pasajeros",
-    "displayName": "pasajero"
+    "displayName": "pasajero",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -36,6 +37,11 @@
     },
     "numeroAsiento": {
       "type": "integer"
+    },
+    "horario_de_autobus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::horario-de-autobus.horario-de-autobus"
     }
   }
 }

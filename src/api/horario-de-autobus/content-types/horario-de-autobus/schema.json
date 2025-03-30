@@ -11,12 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "asientosDisponibles": {
-      "type": "integer"
-    },
-    "totalDeAsiento": {
-      "type": "integer"
-    },
     "precio": {
       "type": "decimal"
     },
@@ -26,10 +20,7 @@
     "fechaDeSalida": {
       "type": "datetime"
     },
-    "nombreDeBus": {
-      "type": "string"
-    },
-    "numeroPLacaBus": {
+    "claseDeBus": {
       "type": "string"
     },
     "terminalSalidaId": {
@@ -41,6 +32,28 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::terminal.terminal"
+    },
+    "duracionEnHoras": {
+      "type": "integer"
+    },
+    "distanciaEnKm": {
+      "type": "integer"
+    },
+    "bus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bus.bus"
+    },
+    "conductor": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::conductor.conductor"
+    },
+    "asientos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::asiento.asiento",
+      "mappedBy": "horario_de_autobus"
     }
   }
 }

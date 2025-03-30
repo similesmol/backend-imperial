@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "conductors",
+  "info": {
+    "singularName": "conductor",
+    "pluralName": "conductors",
+    "displayName": "conductor"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nombreCompleto": {
+      "type": "string"
+    },
+    "numeroDocumento": {
+      "type": "string"
+    },
+    "fechaNacimiento": {
+      "type": "date"
+    },
+    "numeroLicencia": {
+      "type": "string"
+    }
+  }
+}

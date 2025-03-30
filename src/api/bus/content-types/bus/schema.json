@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "buses",
+  "info": {
+    "singularName": "bus",
+    "pluralName": "buses",
+    "displayName": "bus",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "placa": {
+      "type": "string"
+    },
+    "totalAsientos": {
+      "type": "integer",
+      "default": 48,
+      "required": true
+    }
+  }
+}

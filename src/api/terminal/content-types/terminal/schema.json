@@ -4,15 +4,13 @@
   "info": {
     "singularName": "terminal",
     "pluralName": "terminals",
-    "displayName": "terminal"
+    "displayName": "terminal",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "direccion": {
-      "type": "string"
-    },
     "nombreTerminal": {
       "type": "string"
     },
@@ -20,6 +18,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::provincia.provincia"
+    },
+    "direccion": {
+      "type": "string"
     }
   }
 }

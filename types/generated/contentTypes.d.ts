@@ -398,6 +398,102 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
+  collectionName: 'asientos';
+  info: {
+    description: '';
+    displayName: 'asiento';
+    pluralName: 'asientos';
+    singularName: 'asiento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    estado: Schema.Attribute.Enumeration<
+      ['bloqueado', 'disponible', 'seleccionado']
+    >;
+    horario_de_autobus: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::horario-de-autobus.horario-de-autobus'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::asiento.asiento'
+    > &
+      Schema.Attribute.Private;
+    numeroAsiento: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiBusBus extends Struct.CollectionTypeSchema {
+  collectionName: 'buses';
+  info: {
+    description: '';
+    displayName: 'bus';
+    pluralName: 'buses';
+    singularName: 'bus';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::bus.bus'> &
+      Schema.Attribute.Private;
+    placa: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    totalAsientos: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<48>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiConductorConductor extends Struct.CollectionTypeSchema {
+  collectionName: 'conductors';
+  info: {
+    displayName: 'conductor';
+    pluralName: 'conductors';
+    singularName: 'conductor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fechaNacimiento: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::conductor.conductor'
+    > &
+      Schema.Attribute.Private;
+    nombreCompleto: Schema.Attribute.String;
+    numeroDocumento: Schema.Attribute.String;
+    numeroLicencia: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -443,10 +539,18 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
     draftAndPublish: true;
   };
   attributes: {
-    asientosDisponibles: Schema.Attribute.Integer;
+    asientos: Schema.Attribute.Relation<'oneToMany', 'api::asiento.asiento'>;
+    bus: Schema.Attribute.Relation<'oneToOne', 'api::bus.bus'>;
+    claseDeBus: Schema.Attribute.String;
+    conductor: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::conductor.conductor'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    distanciaEnKm: Schema.Attribute.Integer;
+    duracionEnHoras: Schema.Attribute.Integer;
     fechaDeLlegada: Schema.Attribute.DateTime;
     fechaDeSalida: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -455,8 +559,6 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
       'api::horario-de-autobus.horario-de-autobus'
     > &
       Schema.Attribute.Private;
-    nombreDeBus: Schema.Attribute.String;
-    numeroPLacaBus: Schema.Attribute.String;
     precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     terminalLlegadaId: Schema.Attribute.Relation<
@@ -467,7 +569,6 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
       'oneToOne',
       'api::terminal.terminal'
     >;
-    totalDeAsiento: Schema.Attribute.Integer;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -477,6 +578,7 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
 export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
   collectionName: 'pasajeros';
   info: {
+    description: '';
     displayName: 'pasajero';
     pluralName: 'pasajeros';
     singularName: 'pasajero';
@@ -490,6 +592,10 @@ export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     edad: Schema.Attribute.Integer;
     genero: Schema.Attribute.Enumeration<['masculino', 'femenino']>;
+    horario_de_autobus: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::horario-de-autobus.horario-de-autobus'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -541,6 +647,7 @@ export interface ApiProvinciaProvincia extends Struct.CollectionTypeSchema {
 export interface ApiTerminalTerminal extends Struct.CollectionTypeSchema {
   collectionName: 'terminals';
   info: {
+    description: '';
     displayName: 'terminal';
     pluralName: 'terminals';
     singularName: 'terminal';
@@ -1081,6 +1188,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::asiento.asiento': ApiAsientoAsiento;
+      'api::bus.bus': ApiBusBus;
+      'api::conductor.conductor': ApiConductorConductor;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
       'api::pasajero.pasajero': ApiPasajeroPasajero;

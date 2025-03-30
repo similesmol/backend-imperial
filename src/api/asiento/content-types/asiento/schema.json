@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asientos",
+  "info": {
+    "singularName": "asiento",
+    "pluralName": "asientos",
+    "displayName": "asiento",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "numeroAsiento": {
+      "type": "integer"
+    },
+    "estado": {
+      "type": "enumeration",
+      "enum": [
+        "bloqueado",
+        "disponible",
+        "seleccionado"
+      ]
+    },
+    "horario_de_autobus": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::horario-de-autobus.horario-de-autobus",
+      "inversedBy": "asientos"
+    }
+  }
+}
