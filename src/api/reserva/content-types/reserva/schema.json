@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reservas",
+  "info": {
+    "singularName": "reserva",
+    "pluralName": "reservas",
+    "displayName": "reserva"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "horario_de_autobus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::horario-de-autobus.horario-de-autobus"
+    },
+    "pasajero": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::pasajero.pasajero"
+    },
+    "numeroDeasiento": {
+      "type": "integer",
+      "unique": false,
+      "required": true,
+      "min": 1,
+      "max": 8
+    }
+  }
+}

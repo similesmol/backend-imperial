@@ -34,14 +34,6 @@
         "masculino",
         "femenino"
       ]
-    },
-    "numeroAsiento": {
-      "type": "integer"
-    },
-    "horario_de_autobus": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::horario-de-autobus.horario-de-autobus"
     }
   }
 }

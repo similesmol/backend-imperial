@@ -49,10 +49,8 @@
       "relation": "oneToOne",
       "target": "api::conductor.conductor"
     },
-    "asientos": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::asiento.asiento"
+    "mapaDeAsientos": {
+      "type": "json"
     }
   }
 }

@@ -12,15 +12,28 @@
   },
   "attributes": {
     "numeroAsiento": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "funcionando": {
+      "type": "boolean",
+      "default": true
+    },
+    "fila": {
       "type": "integer"
     },
-    "estado": {
-      "type": "enumeration",
-      "enum": [
-        "bloqueado",
-        "disponible",
-        "seleccionado"
-      ]
+    "columna": {
+      "type": "integer"
+    },
+    "nombreDeCalidad": {
+      "type": "string"
+    },
+    "gradoInclinacion": {
+      "type": "integer"
+    },
+    "precioBase": {
+      "type": "integer"
     }
   }
 }

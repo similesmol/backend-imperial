@@ -410,19 +410,24 @@ export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    columna: Schema.Attribute.Integer;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    estado: Schema.Attribute.Enumeration<
-      ['bloqueado', 'disponible', 'seleccionado']
-    >;
+    fila: Schema.Attribute.Integer;
+    funcionando: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    gradoInclinacion: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::asiento.asiento'
     > &
       Schema.Attribute.Private;
-    numeroAsiento: Schema.Attribute.Integer;
+    nombreDeCalidad: Schema.Attribute.String;
+    numeroAsiento: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    precioBase: Schema.Attribute.Integer;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -535,7 +540,6 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
     draftAndPublish: true;
   };
   attributes: {
-    asientos: Schema.Attribute.Relation<'oneToMany', 'api::asiento.asiento'>;
     bus: Schema.Attribute.Relation<'oneToOne', 'api::bus.bus'>;
     claseDeBus: Schema.Attribute.String;
     conductor: Schema.Attribute.Relation<
@@ -555,6 +559,7 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
       'api::horario-de-autobus.horario-de-autobus'
     > &
       Schema.Attribute.Private;
+    mapaDeAsientos: Schema.Attribute.JSON;
     precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     terminalLlegadaId: Schema.Attribute.Relation<
@@ -588,10 +593,6 @@ export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     edad: Schema.Attribute.Integer;
     genero: Schema.Attribute.Enumeration<['masculino', 'femenino']>;
-    horario_de_autobus: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::horario-de-autobus.horario-de-autobus'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -599,7 +600,6 @@ export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nombreCompleto: Schema.Attribute.String;
-    numeroAsiento: Schema.Attribute.Integer;
     numeroDocumento: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     tipoDocumento: Schema.Attribute.Enumeration<
@@ -633,6 +633,47 @@ export interface ApiProvinciaProvincia extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     nombreProvincia: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
+  collectionName: 'reservas';
+  info: {
+    displayName: 'reserva';
+    pluralName: 'reservas';
+    singularName: 'reserva';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    horario_de_autobus: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::horario-de-autobus.horario-de-autobus'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reserva.reserva'
+    > &
+      Schema.Attribute.Private;
+    numeroDeasiento: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 8;
+          min: 1;
+        },
+        number
+      >;
+    pasajero: Schema.Attribute.Relation<'oneToOne', 'api::pasajero.pasajero'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -1191,6 +1232,7 @@ declare module '@strapi/strapi' {
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
       'api::pasajero.pasajero': ApiPasajeroPasajero;
       'api::provincia.provincia': ApiProvinciaProvincia;
+      'api::reserva.reserva': ApiReservaReserva;
       'api::terminal.terminal': ApiTerminalTerminal;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
