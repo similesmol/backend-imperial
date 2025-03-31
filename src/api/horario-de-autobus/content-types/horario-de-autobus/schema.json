@@ -52,8 +52,7 @@
     "asientos": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::asiento.asiento",
-      "mappedBy": "horario_de_autobus"
+      "target": "api::asiento.asiento"
     }
   }
 }

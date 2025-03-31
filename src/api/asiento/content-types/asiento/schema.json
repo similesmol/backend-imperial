@@ -21,12 +21,6 @@
         "disponible",
         "seleccionado"
       ]
-    },
-    "horario_de_autobus": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::horario-de-autobus.horario-de-autobus",
-      "inversedBy": "asientos"
     }
   }
 }

@@ -416,10 +416,6 @@ export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
     estado: Schema.Attribute.Enumeration<
       ['bloqueado', 'disponible', 'seleccionado']
     >;
-    horario_de_autobus: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::horario-de-autobus.horario-de-autobus'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
