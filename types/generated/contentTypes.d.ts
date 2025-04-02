@@ -643,6 +643,7 @@ export interface ApiProvinciaProvincia extends Struct.CollectionTypeSchema {
 export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
   collectionName: 'reservas';
   info: {
+    description: '';
     displayName: 'reserva';
     pluralName: 'reservas';
     singularName: 'reserva';
@@ -668,7 +669,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
-          max: 8;
+          max: 48;
           min: 1;
         },
         number
@@ -678,6 +679,10 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    usuario: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -1197,6 +1202,7 @@ export interface PluginUsersPermissionsUser
       }>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    reservas: Schema.Attribute.Relation<'oneToMany', 'api::reserva.reserva'>;
     resetPasswordToken: Schema.Attribute.String & Schema.Attribute.Private;
     role: Schema.Attribute.Relation<
       'manyToOne',

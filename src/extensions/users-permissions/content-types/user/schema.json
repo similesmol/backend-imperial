@@ -68,6 +68,12 @@
     "fullName": {
       "type": "string",
       "required": true
+    },
+    "reservas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::reserva.reserva",
+      "mappedBy": "usuario"
     }
   }
 }

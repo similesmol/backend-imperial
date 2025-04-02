@@ -4,7 +4,8 @@
   "info": {
     "singularName": "reserva",
     "pluralName": "reservas",
-    "displayName": "reserva"
+    "displayName": "reserva",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -25,7 +26,13 @@
       "unique": false,
       "required": true,
       "min": 1,
-      "max": 8
+      "max": 48
+    },
+    "usuario": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "reservas"
     }
   }
 }
