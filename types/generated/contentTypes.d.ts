@@ -398,43 +398,6 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiAsientoAsiento extends Struct.CollectionTypeSchema {
-  collectionName: 'asientos';
-  info: {
-    description: '';
-    displayName: 'asiento';
-    pluralName: 'asientos';
-    singularName: 'asiento';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    columna: Schema.Attribute.Integer;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    fila: Schema.Attribute.Integer;
-    funcionando: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-    gradoInclinacion: Schema.Attribute.Integer;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::asiento.asiento'
-    > &
-      Schema.Attribute.Private;
-    nombreDeCalidad: Schema.Attribute.String;
-    numeroAsiento: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    precioBase: Schema.Attribute.Integer;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiBusBus extends Struct.CollectionTypeSchema {
   collectionName: 'buses';
   info: {
@@ -576,13 +539,13 @@ export interface ApiHorarioDeAutobusHorarioDeAutobus
   };
 }
 
-export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
-  collectionName: 'pasajeros';
+export interface ApiIncidenciasEnRutaIncidenciasEnRuta
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'incidencias_en_rutas';
   info: {
-    description: '';
-    displayName: 'pasajero';
-    pluralName: 'pasajeros';
-    singularName: 'pasajero';
+    displayName: 'incidenciasEnRuta';
+    pluralName: 'incidencias-en-rutas';
+    singularName: 'incidencias-en-ruta';
   };
   options: {
     draftAndPublish: true;
@@ -591,20 +554,19 @@ export interface ApiPasajeroPasajero extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    edad: Schema.Attribute.Integer;
-    genero: Schema.Attribute.Enumeration<['masculino', 'femenino']>;
+    descripcion: Schema.Attribute.RichText;
+    fechaDelIncidente: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    horario_de_autobus: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::horario-de-autobus.horario-de-autobus'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::pasajero.pasajero'
+      'api::incidencias-en-ruta.incidencias-en-ruta'
     > &
       Schema.Attribute.Private;
-    nombreCompleto: Schema.Attribute.String;
-    numeroDocumento: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
-    tipoDocumento: Schema.Attribute.Enumeration<
-      ['dni', 'pasaporte', 'carnetExtranjeria']
-    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -665,6 +627,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
       'api::reserva.reserva'
     > &
       Schema.Attribute.Private;
+    nombreCompleto: Schema.Attribute.String;
     numeroDeasiento: Schema.Attribute.Integer &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
@@ -674,8 +637,9 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
         },
         number
       >;
-    pasajero: Schema.Attribute.Relation<'oneToOne', 'api::pasajero.pasajero'>;
+    numeroDocumento: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    tipoDocumento: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1231,12 +1195,11 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
-      'api::asiento.asiento': ApiAsientoAsiento;
       'api::bus.bus': ApiBusBus;
       'api::conductor.conductor': ApiConductorConductor;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
-      'api::pasajero.pasajero': ApiPasajeroPasajero;
+      'api::incidencias-en-ruta.incidencias-en-ruta': ApiIncidenciasEnRutaIncidenciasEnRuta;
       'api::provincia.provincia': ApiProvinciaProvincia;
       'api::reserva.reserva': ApiReservaReserva;
       'api::terminal.terminal': ApiTerminalTerminal;

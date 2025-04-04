@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "incidencias_en_rutas",
+  "info": {
+    "singularName": "incidencias-en-ruta",
+    "pluralName": "incidencias-en-rutas",
+    "displayName": "incidenciasEnRuta"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "horario_de_autobus": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::horario-de-autobus.horario-de-autobus"
+    },
+    "descripcion": {
+      "type": "richtext"
+    },
+    "fechaDelIncidente": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

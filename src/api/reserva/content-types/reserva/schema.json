@@ -16,11 +16,6 @@
       "relation": "oneToOne",
       "target": "api::horario-de-autobus.horario-de-autobus"
     },
-    "pasajero": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::pasajero.pasajero"
-    },
     "numeroDeasiento": {
       "type": "integer",
       "unique": false,
@@ -33,6 +28,15 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "reservas"
+    },
+    "nombreCompleto": {
+      "type": "string"
+    },
+    "numeroDocumento": {
+      "type": "string"
+    },
+    "tipoDocumento": {
+      "type": "string"
     }
   }
 }
