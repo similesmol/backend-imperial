@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "esquema_de_asientos",
+  "info": {
+    "singularName": "esquema-de-asiento",
+    "pluralName": "esquema-de-asientos",
+    "displayName": "esquemaDeAsiento"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "cantidadDeAsientos": {
+      "type": "integer"
+    },
+    "esquema": {
+      "type": "json"
+    }
+  }
+}

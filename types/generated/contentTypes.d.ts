@@ -458,6 +458,36 @@ export interface ApiConductorConductor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEsquemaDeAsientoEsquemaDeAsiento
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'esquema_de_asientos';
+  info: {
+    displayName: 'esquemaDeAsiento';
+    pluralName: 'esquema-de-asientos';
+    singularName: 'esquema-de-asiento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cantidadDeAsientos: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    esquema: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::esquema-de-asiento.esquema-de-asiento'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -1197,6 +1227,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::bus.bus': ApiBusBus;
       'api::conductor.conductor': ApiConductorConductor;
+      'api::esquema-de-asiento.esquema-de-asiento': ApiEsquemaDeAsientoEsquemaDeAsiento;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;
       'api::incidencias-en-ruta.incidencias-en-ruta': ApiIncidenciasEnRutaIncidenciasEnRuta;
