@@ -1194,6 +1194,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    phoneNumber: Schema.Attribute.Integer;
     photoURL: Schema.Attribute.Media<'files' | 'images', true>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
