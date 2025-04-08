@@ -74,6 +74,14 @@
       "relation": "oneToMany",
       "target": "api::reserva.reserva",
       "mappedBy": "usuario"
+    },
+    "photoURL": {
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

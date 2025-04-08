@@ -1194,6 +1194,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    photoURL: Schema.Attribute.Media<'files' | 'images', true>;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     reservas: Schema.Attribute.Relation<'oneToMany', 'api::reserva.reserva'>;
