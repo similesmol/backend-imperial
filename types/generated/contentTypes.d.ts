@@ -470,8 +470,20 @@ export interface ApiEncomiendaEncomienda extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    celularEmisor: Schema.Attribute.Integer;
-    celularReceptor: Schema.Attribute.Integer;
+    celularEmisor: Schema.Attribute.BigInteger &
+      Schema.Attribute.SetMinMax<
+        {
+          max: '999999999';
+        },
+        string
+      >;
+    celularReceptor: Schema.Attribute.BigInteger &
+      Schema.Attribute.SetMinMax<
+        {
+          max: '999999999';
+        },
+        string
+      >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

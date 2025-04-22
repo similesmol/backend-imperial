@@ -28,7 +28,8 @@
       "type": "string"
     },
     "celularEmisor": {
-      "type": "integer"
+      "type": "biginteger",
+      "max": "999999999"
     },
     "documentoReceptor": {
       "type": "string"
@@ -37,7 +38,8 @@
       "type": "string"
     },
     "celularReceptor": {
-      "type": "integer"
+      "type": "biginteger",
+      "max": "999999999"
     },
     "estadoPago": {
       "type": "enumeration",
