@@ -644,7 +644,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    codigoReserva: Schema.Attribute.String;
+    codigoReserva: Schema.Attribute.UID;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
