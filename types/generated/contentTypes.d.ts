@@ -458,6 +458,52 @@ export interface ApiConductorConductor extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEncomiendaEncomienda extends Struct.CollectionTypeSchema {
+  collectionName: 'encomiendas';
+  info: {
+    description: '';
+    displayName: 'encomienda';
+    pluralName: 'encomiendas';
+    singularName: 'encomienda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    celularEmisor: Schema.Attribute.Integer;
+    celularReceptor: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    documentoEmisor: Schema.Attribute.String;
+    documentoReceptor: Schema.Attribute.String;
+    estadoDeEntrega: Schema.Attribute.Enumeration<['En proceso', 'Entregado']>;
+    estadoPago: Schema.Attribute.Enumeration<['Pagado', 'Por cobrar']>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::encomienda.encomienda'
+    > &
+      Schema.Attribute.Private;
+    montoCobrar: Schema.Attribute.Decimal;
+    NombreCompletoEmisor: Schema.Attribute.String;
+    nombreCompletoReceptor: Schema.Attribute.String;
+    pesoKg: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    terminalDestino: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::terminal.terminal'
+    >;
+    terminalOrigen: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::terminal.terminal'
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiEsquemaDeAsientoEsquemaDeAsiento
   extends Struct.CollectionTypeSchema {
   collectionName: 'esquema_de_asientos';
@@ -1247,6 +1293,7 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::bus.bus': ApiBusBus;
       'api::conductor.conductor': ApiConductorConductor;
+      'api::encomienda.encomienda': ApiEncomiendaEncomienda;
       'api::esquema-de-asiento.esquema-de-asiento': ApiEsquemaDeAsientoEsquemaDeAsiento;
       'api::global.global': ApiGlobalGlobal;
       'api::horario-de-autobus.horario-de-autobus': ApiHorarioDeAutobusHorarioDeAutobus;

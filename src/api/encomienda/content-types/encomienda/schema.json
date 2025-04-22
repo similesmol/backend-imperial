@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "encomiendas",
+  "info": {
+    "singularName": "encomienda",
+    "pluralName": "encomiendas",
+    "displayName": "encomienda",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "terminalOrigen": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::terminal.terminal"
+    },
+    "terminalDestino": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::terminal.terminal"
+    },
+    "documentoEmisor": {
+      "type": "string"
+    },
+    "NombreCompletoEmisor": {
+      "type": "string"
+    },
+    "celularEmisor": {
+      "type": "integer"
+    },
+    "documentoReceptor": {
+      "type": "string"
+    },
+    "nombreCompletoReceptor": {
+      "type": "string"
+    },
+    "celularReceptor": {
+      "type": "integer"
+    },
+    "estadoPago": {
+      "type": "enumeration",
+      "enum": [
+        "Pagado",
+        "Por cobrar"
+      ]
+    },
+    "pesoKg": {
+      "type": "integer"
+    },
+    "montoCobrar": {
+      "type": "decimal"
+    },
+    "estadoDeEntrega": {
+      "type": "enumeration",
+      "enum": [
+        "En proceso",
+        "Entregado"
+      ]
+    }
+  }
+}
