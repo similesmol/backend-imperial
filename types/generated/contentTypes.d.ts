@@ -489,7 +489,9 @@ export interface ApiEncomiendaEncomienda extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     documentoEmisor: Schema.Attribute.String;
     documentoReceptor: Schema.Attribute.String;
-    estadoDeEntrega: Schema.Attribute.Enumeration<['En proceso', 'Entregado']>;
+    estadoDeEntrega: Schema.Attribute.Enumeration<
+      ['En proceso', 'En camino', 'Entregado']
+    >;
     estadoPago: Schema.Attribute.Enumeration<['Pagado', 'Por cobrar']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

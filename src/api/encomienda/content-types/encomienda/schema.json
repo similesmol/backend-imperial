@@ -58,6 +58,7 @@
       "type": "enumeration",
       "enum": [
         "En proceso",
+        "En camino",
         "Entregado"
       ]
     }
