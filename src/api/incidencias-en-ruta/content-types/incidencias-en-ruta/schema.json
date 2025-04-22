@@ -4,7 +4,8 @@
   "info": {
     "singularName": "incidencias-en-ruta",
     "pluralName": "incidencias-en-rutas",
-    "displayName": "incidenciasEnRuta"
+    "displayName": "incidenciasEnRuta",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,36 @@
     "fechaDelIncidente": {
       "type": "datetime",
       "required": true
+    },
+    "titulo": {
+      "type": "string"
+    },
+    "correo": {
+      "type": "string"
+    },
+    "Prioridad": {
+      "type": "enumeration",
+      "enum": [
+        "Baja",
+        "Media",
+        "Alta"
+      ]
+    },
+    "Estado": {
+      "type": "enumeration",
+      "enum": [
+        "Reportada",
+        "Archivada",
+        "En revision"
+      ]
+    },
+    "origen": {
+      "type": "enumeration",
+      "enum": [
+        "pagina web",
+        "app movil",
+        "sistema adm"
+      ]
     }
   }
 }

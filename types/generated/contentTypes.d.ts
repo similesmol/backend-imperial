@@ -573,6 +573,7 @@ export interface ApiIncidenciasEnRutaIncidenciasEnRuta
   extends Struct.CollectionTypeSchema {
   collectionName: 'incidencias_en_rutas';
   info: {
+    description: '';
     displayName: 'incidenciasEnRuta';
     pluralName: 'incidencias-en-rutas';
     singularName: 'incidencias-en-ruta';
@@ -581,10 +582,14 @@ export interface ApiIncidenciasEnRutaIncidenciasEnRuta
     draftAndPublish: true;
   };
   attributes: {
+    correo: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descripcion: Schema.Attribute.RichText;
+    Estado: Schema.Attribute.Enumeration<
+      ['Reportada', 'Archivada', 'En revision']
+    >;
     fechaDelIncidente: Schema.Attribute.DateTime & Schema.Attribute.Required;
     horario_de_autobus: Schema.Attribute.Relation<
       'oneToOne',
@@ -596,7 +601,12 @@ export interface ApiIncidenciasEnRutaIncidenciasEnRuta
       'api::incidencias-en-ruta.incidencias-en-ruta'
     > &
       Schema.Attribute.Private;
+    origen: Schema.Attribute.Enumeration<
+      ['pagina web', 'app movil', 'sistema adm']
+    >;
+    Prioridad: Schema.Attribute.Enumeration<['Baja', 'Media', 'Alta']>;
     publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -644,7 +654,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    codigoReserva: Schema.Attribute.UID;
+    codigoReserva: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
