@@ -644,6 +644,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    codigoReserva: Schema.Attribute.UID;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -670,6 +671,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
     numeroDocumento: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     tipoDocumento: Schema.Attribute.String;
+    totalPagado: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
