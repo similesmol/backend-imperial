@@ -669,6 +669,7 @@ export interface ApiReservaReserva extends Struct.CollectionTypeSchema {
         number
       >;
     numeroDocumento: Schema.Attribute.String;
+    pasajeros: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
     tipoDocumento: Schema.Attribute.String;
     totalPagado: Schema.Attribute.Decimal;
