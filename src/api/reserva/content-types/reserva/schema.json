@@ -41,11 +41,11 @@
     "totalPagado": {
       "type": "decimal"
     },
-    "codigoReserva": {
-      "type": "uid"
-    },
     "pasajeros": {
       "type": "json"
+    },
+    "codigoReserva": {
+      "type": "string"
     }
   }
 }
